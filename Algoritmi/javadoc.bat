@@ -1,0 +1,1 @@
+"C:\Program Files\Java\jdk-25\bin\javadoc.exe" -d Javadoc src\com\matteofuso\arrays\*.java src\com\matteofuso\adt\*.java
