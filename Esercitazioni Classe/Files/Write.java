@@ -63,10 +63,6 @@ public class Write {
         {
             System.err.println("Errore generico nella scrittura su file");
             System.exit(-1);
-        } catch (Exception e)
-        {
-            System.err.println("Errore generico");
-            System.exit(-1);
         }
     }
 }
