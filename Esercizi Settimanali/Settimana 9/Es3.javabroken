@@ -1,0 +1,72 @@
+import java.lang.reflect.Array;
+
+public class Es3 {
+    public static <T extends Comparable<T>> void sort(T[] array)
+    {
+        Comparable[] left, right;
+        int i, k, size, iL, iR, rSize;
+
+        i = 0;
+        do
+        {
+            size = Math.powExact(2, i);
+            left = new Comparable[size];
+            right = new Comparable[size];
+            for (int j = 0; j + size <= array.length; j += size * 2)
+            {
+                iL = iR = 0;
+                k = j;
+                System.arraycopy(array, j, left, 0, size);
+                System.arraycopy(array, j + size / 2, right, 0, size);
+                rSize = size;
+                if (j * 2 + size > array.length)
+                {
+                    rSize = array.length % size;
+                }
+                while (iL < left.length && iR < rSize)
+                {
+                    if (left[iL].compareTo(right[iR]) < 0)
+                    {
+                        array[k++] = (T) left[iL++];
+                    } else {
+                        array[k++] = (T) right[iR++];
+                    }
+                }
+                if (iL < left.length)
+                {
+                    System.arraycopy(left, iL, array, k, left.length - iL);
+                    k += left.length - iL;
+                }
+                if (iR < rSize)
+                {
+                    System.arraycopy(right, iR, array, k, right.length - iR);
+                }
+            }
+            i++;
+        } while (size > array.length);
+    } 
+
+    public static <T> String printArray(T[] array)
+    {
+        StringBuilder s = new StringBuilder("[");
+        for (int i = 0; i < array.length; i++)
+        {
+            s.append(array[i].toString());
+            if (i != array.length - 1)
+            {
+                s.append(", ");
+            }
+        }
+        s.append("]");
+        return s.toString();
+    }
+
+    public static void main(String[] args)
+    {
+        Integer[] arr = {3, 6, 8, 1, 7, 9, 1, 4};
+
+        System.out.println("Array non ordinato: " + printArray(arr));
+        sort(arr);
+        System.out.println("Array ordinato: " + printArray(arr));
+    }    
+}

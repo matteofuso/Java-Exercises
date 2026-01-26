@@ -1,7 +1,6 @@
 import com.matteofuso.arrays.Arrays;
-import com.matteofuso.arrays.Arrays.Order;
-import com.matteofuso.arrays.Arrays.SortAlgorithm;
-import com.matteofuso.arrays.Arrays.SearchAlgorithm;;
+import com.matteofuso.adt.ArrayList;
+import com.matteofuso.adt.LinkedList;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,6 +9,9 @@ public class Main {
         System.out.println();
         System.out.println("Array Sorting:");
         testSearch();
+        System.out.println();
+        System.out.println("ADT:");
+        testADT();
     }
 
     public static void testSort()
@@ -20,12 +22,12 @@ public class Main {
         Integer[] bubbleSort = Arrays.clone(array);
         Integer[] mergeSort = Arrays.clone(array);
         Integer[] quickSort = Arrays.clone(array);
-        Order order = Order.DESCENDING;
+        Arrays.Order order = Arrays.Order.DESCENDING;
 
-        Arrays.sort(selectionSort, SortAlgorithm.SELECTION_SORT, order);
-        Arrays.sort(insertionSort, SortAlgorithm.INSERTION_SORT, order);
-        Arrays.sort(bubbleSort, SortAlgorithm.BUBBLE_SORT, order);
-        Arrays.sort(mergeSort, SortAlgorithm.MERGE_SORT, order);
+        Arrays.sort(selectionSort, Arrays.SortAlgorithm.SELECTION_SORT, order);
+        Arrays.sort(insertionSort, Arrays.SortAlgorithm.INSERTION_SORT, order);
+        Arrays.sort(bubbleSort, Arrays.SortAlgorithm.BUBBLE_SORT, order);
+        Arrays.sort(mergeSort, Arrays.SortAlgorithm.MERGE_SORT, order);
         Arrays.sort(quickSort, order);
         
         System.out.print("Unsorted:  ");
@@ -47,11 +49,11 @@ public class Main {
         int linear, binary, item;
         Integer[] unsorted = {5, 2, 9, 1, 5, 6};
         Integer[] sorted = Arrays.clone(unsorted);
-        Arrays.sort(sorted, Order.DESCENDING);
+        Arrays.sort(sorted, Arrays.Order.DESCENDING);
         
         item = 6;
-        linear = Arrays.search(unsorted, item, SearchAlgorithm.LINEAR);
-        binary = Arrays.search(sorted, item, SearchAlgorithm.BINARY);
+        linear = Arrays.search(unsorted, item, Arrays.SearchAlgorithm.LINEAR);
+        binary = Arrays.search(sorted, item, Arrays.SearchAlgorithm.BINARY);
 
         System.out.print("Unsorted: ");
         System.out.println(Arrays.printable(unsorted));
@@ -59,6 +61,17 @@ public class Main {
         System.out.println(Arrays.printable(sorted));
         System.out.println("Linar Search: " + linear);
         System.out.println("Binary Search: " + binary);
+    }
 
+    public static void testADT()
+    {
+        ArrayList<Number> arraylist = new ArrayList<>(new Number[] {1, 2.4, 3L});
+        LinkedList<Integer> linkedList = new LinkedList<>(new Integer[] {1, 2, 3, 4, 5, 7, 8});
+
+        arraylist.add(new Integer[] {1, 2, 3, 4, 5, 7, 8});
+        linkedList.add(100, 3);
+
+        System.out.println(arraylist);
+        System.out.println(linkedList);
     }
 }

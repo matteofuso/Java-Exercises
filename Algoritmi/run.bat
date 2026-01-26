@@ -6,3 +6,4 @@ javac -d ..\out Main.java
 
 cd ..\out
 java Main
+pause
